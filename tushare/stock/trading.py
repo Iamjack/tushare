@@ -17,7 +17,7 @@ import numpy as np
 import datetime
 from tushare.stock import cons as ct
 import re
-from pandas.compat import StringIO
+from io import StringIO
 from tushare.util import dateu as du
 from tushare.util.formula import MA
 import os
@@ -63,6 +63,8 @@ def get_hist_data(code=None, start=None, end=None,
                                     symbol, ktype)
     else:
         raise TypeError('ktype input error.')
+
+    print(url)
     
     for _ in range(retry_count):
         time.sleep(pause)
@@ -255,6 +257,7 @@ def get_today_ticks(code=None, retry_count=3, pause=0.001):
             request = Request(ct.TODAY_TICKS_PAGE_URL % (ct.P_TYPE['http'], ct.DOMAINS['vsf'],
                                                        ct.PAGES['jv'], date,
                                                        symbol))
+            print('full url %s' % request.full_url)
             data_str = urlopen(request, timeout=10).read()
             data_str = data_str.decode('GBK')
             data_str = data_str[1:-1]

@@ -75,7 +75,7 @@ def read_install_requires():
 
 
 setup(
-    name='tushare',
+    name='tushare_lite',
     version=read('tushare/VERSION.txt'),
     description='A utility for crawling historical and Real-time Quotes data of China stocks',
 #     long_description=read("READM.rst"),
@@ -94,7 +94,7 @@ setup(
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
     'License :: OSI Approved :: BSD License'],
-    packages=find_packages(),
+    packages=find_packages(exclude='test'),
     include_package_data=True,
     package_data={'': ['*.csv', '*.txt']},
 )
